@@ -1,19 +1,19 @@
 import React from 'react';
-import ContactListItem from './ContactListItem';
-import styles from './Form.module.css';
+import ContactListItem from '../contactListItem/ContactListItem';
+import styles from './ContactList.module.css';
 import PropTypes from 'prop-types';
 
 
 const ContactList = ({contacts,onRemoveContact,onUpdateContact})=>(
   <ul className = {styles.list}>
-  {contacts.map(({id,name,number,update})=>(
+  {contacts.map((item)=>(
     <ContactListItem
-    key={id}
-    name={name}
-    number = {number}
-    update= {update}
-    onRemove={()=>onRemoveContact(id)}
-    onUpdate={()=>onUpdateContact(id)}/>
+    key={item.id}
+    update= {item.update}
+    {...item}
+    onRemove={onRemoveContact}
+    onUpdate={onUpdateContact}
+    />
   ))}
 </ul>
 )
